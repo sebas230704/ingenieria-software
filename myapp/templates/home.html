@@ -4,11 +4,29 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>ing.software</title>
+        
     </head>
 
     <body>
         {% extends 'base.html' %}
         {% block content %}
-        <h1>This is our home</h1>
+        <header class="text-white text-center p-5" style="background-color: #ff69b4;">
+            <h1>Bienvenido a contrataFacil!</h1>
+            <p>Tu mejor solución.</p>
+        </header>
+    
+        <section class="container my-5">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Encuentra a quien necesitas</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eros sed lorem rutrum, at sagittis sapien volutpat.</p>
+                </div>
+            </div>
+        </section>
+    
+        <footer class="bg-light text-center p-3">
+            &copy; 2023 Our Website
+        </footer>
         {% endblock content %}
     </body>
+</html>
