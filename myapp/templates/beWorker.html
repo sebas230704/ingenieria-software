@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <div class="container">
+        <link rel="stylesheet" href="{% static 'css/beworker.css' %}">
+        <main class="container-body">
+            <div class="row">
+                <section class="col-md-4 offset-md-4">
+                    <form action="/be/worker/" method="POST" class="form" enctype="multipart/form-data">
+                    
+                    <h1 class="text-center"> contrataFacil </h1>
+                    <p></p>
+                    <h2 class="text-center">Datos del trabajador</h2>
+    
+                    {% csrf_token %}
+                    <div class="form__container">
+                        <div class="field">
+                            <input type="email" name="email" id="email" class="form-input" placeholder=" ">
+                            <label for="email" class="form-label">Email</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="phone2numeric" name="phone" id="phone" class="form-input" placeholder=" ">
+                            <label for="phone" class="form-label">contacto</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="work" id="work" class="form-input" placeholder=" ">
+                            <label for="work" class="form-label">Tus oficios</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="location" name="location" id="location" class="form-input" placeholder=" ">
+                            <label for="location" class="form-label">ciudad / pais</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <textarea rows="5" name="description" id="description" class="form-input" placeholder=" "></textarea>
+                            <label for="description" class="form-label">Descripción:</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="text" name="hours" id="hours" class="form-input" placeholder=" ">
+                            <label for="hours" class="form-label">Horarios</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="file" name="image" id="image" class="form-input" placeholder=" ">
+                            <label for="image" class="form-label">Foto de ti</label>
+                            <span class="form-line"></span>
+                        </div>
+                        <div class="field">
+                            <input type="file" name="resume" id="resume" class="form-input" placeholder=" ">
+                            <label for="resume" class="form-label">Hoja de vida</label>
+                            <span class="form-line"></span>
+                        </div>
+
+                        <button class="form-submit">
+                            Create
+                        </button>
+                    </div>
+                        
+                    </form>
+                </section>
+            </div>
+        </main>
+    </div>
+{% endblock %}

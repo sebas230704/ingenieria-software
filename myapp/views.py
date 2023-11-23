@@ -10,11 +10,14 @@ from datetime import datetime
 from django.conf import settings
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from .forms import WorkerOfferForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    workers = Worker.objects.all()
+    return render(request, 'home.html', {'workers': workers})
 
 
 def signup(request):
@@ -60,3 +63,26 @@ def signin(request):
         else:
             login(request, user)
             return redirect('home')
+
+@login_required
+def offer_worker(request):
+    if request.method == 'GET':
+        return render(request, 'beWorker.html', {
+            'form' : WorkerOfferForm
+        })
+    else:
+        try:
+            form = WorkerOfferForm(request.POST)
+            new_worker = form.save(commit=False)
+            new_worker.user = request.user
+            new_worker.email = request.user.email
+            new_worker.save()
+            return redirect('home')
+        except ValueError:
+            return render(request, 'beWorker.html', {
+                'form' : WorkerOfferForm,
+                'error' : "Verificar los datos"
+            })
+        
+        
+        

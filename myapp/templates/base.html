@@ -1,56 +1,42 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>contrataFacil</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg bg-light navbar-light" style="padding-left: 25px; padding-right: 100px;">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <span style="margin-left:10px;">ContrataFacil</span>
-            </a>
-                
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a href="/" class="nav-link">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about" class="nav-link">sobre nosotros</a>
-                    </li class="nav-item">
-                    
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a href="/createEvent/" class="nav-link">preguntas frecuentes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/logout/" class="nav-link">Corporacion</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/logout/" class="nav-link">Logout</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a href="/signup/" class="nav-link">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/signin/" class="nav-link">Sign In</a>
-                    </li>
-                    {% endif %}
-                </ul>
-              </div>
-          </nav>
-        {% block content %}
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contrataFacil</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+   <header>
+        <div class="interior">
+            <a href="/" class="logo"><img src="{% static 'logo.png' %}" alt="Logo" class="logo"></a>
+                <nav class="navbar">
+                    <ul>
+                        <li><a href="/about/us">Sobre Nosotros</a></li>
+                        <li><a href="/about/us">Contactanos</a></li>
+                        <li><a href="/seguro/social/">Seguro Social</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="/be/worker/">Ser trabajador</a></li>
+                        <li class="submenu">
+                            <a href="">Profile</a>
+                            <ul class="children">
+                                <li><a href="/profile/">View Profile</a></li>
+                                <li><a href="/logout/">Logout</a></li>
+                            </ul>
+                        {% else %}
+                        <li><a href="/signup/">Sign Up</a></li>
+                        <li><a href="/signin/">Sign In</a></li>
+                        {% endif %}
+                </nav>
+        </div>
+   </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        ContrataFacil ® 2023
+    </footer>
+</body>
 </html>

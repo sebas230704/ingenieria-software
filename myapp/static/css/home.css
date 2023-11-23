@@ -1,0 +1,91 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Nunito:wght@300;500;700&family=Open+Sans&family=Quicksand:wght@300;500;700&family=Roboto:wght@300;400;700&family=Ysabeau+Office:wght@400;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.container {
+    border-top: solid 1px #d8cece;
+}
+
+.advisor {
+    background-color: rgb(212, 34, 132);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+    width: 100%;
+}
+
+.image {
+    margin-top: 40px;
+}
+
+.image img {
+    width: 100%px;
+    height: 600px;
+}
+
+.principal {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+    margin-right: 400px;
+}
+
+.title h2{
+    font-size: 60px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los botones a la izquierda */
+}
+
+.principal-group {
+    display:flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.form-label {
+    display: flex;
+    height: 100%;
+    margin-top: 10px;
+    margin-right: 30px;
+}
+
+.form-label button {
+    color: #ffffff;
+    padding: 13px 30px;
+    border: none;
+    border-radius: 8px;
+    background: rgb(212, 34, 132);
+    transition: all 0.2s ease;
+}
+
+.form-label button:active {
+    transform: scale(0.96);
+}
+
+.form-label button:hover{
+    background-color: rgb(145, 69, 80);
+}

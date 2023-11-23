@@ -1,32 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>ing.software</title>
-        
-    </head>
+{% extends 'base.html' %}
+{% load static %}
+{%block content %}
 
-    <body>
-        {% extends 'base.html' %}
-        {% block content %}
-        <header class="text-white text-center p-5" style="background-color: #ff69b4;">
-            <h1>Bienvenido a contrataFacil!</h1>
-            <p>Tu mejor solución.</p>
-        </header>
-    
-        <section class="container my-5">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2>Encuentra a quien necesitas</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod eros sed lorem rutrum, at sagittis sapien volutpat.</p>
-                </div>
+<div class="container">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <div class="advisor">
+        <h1>BIENVENIDO A CONTRATAFACIL</h1>
+    </div>
+
+    <div class="principal">
+        <div class="image">
+            <img src="https://aprende.com/wp-content/uploads/2020/12/reune-manicuristas-y-emprender-940x580.jpg">
+        </div>
+        <div class="principal-group">
+            <div class="title">
+                <h2>Encuentra a quien<p></p> necesitas</h2>
             </div>
-        </section>
+            <div class="principal-body">
+                <div class="buttons">
+                    <form class="form-label" action="{% url 'signup' %}">
+                        <button class="form-button" type="submit">Empezar</button>
+                    </form>
+                </div>
+            </div>    
+        </div>
+    </div>
+
+    <div class="workers">
+        {% for workers in workers %}
+            <p>Email: {{ worker.email }}</p>
+            <p>Teléfono: {{ worker.phone }}</p>
+            <p>Trabajo: {{ worker.work }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="experiences">
+    </div>
+
+    <div class="objetivo">
+    </div>
     
-        <footer class="bg-light text-center p-3">
-            &copy; 2023 Our Website
-        </footer>
-        {% endblock content %}
-    </body>
-</html>
+</div>
+{% endblock %}
