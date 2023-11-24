@@ -1,0 +1,5 @@
+<form method="post" action="{% url 'hire_worker' worker.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="message" value="¡Te han contratado!">
+    <button type="submit">Contratar</button>
+</form>

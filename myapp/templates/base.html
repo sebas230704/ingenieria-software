@@ -18,11 +18,12 @@
                         <li><a href="/seguro/social/">Seguro Social</a></li>
                         {% if user.is_authenticated %}
                         <li><a href="/be/worker/">Ser trabajador</a></li>
+                        <li><a href="/worker/list/">Trabajadores</a></li>
                         <li class="submenu">
                             <a href="">Profile</a>
                             <ul class="children">
-                                <li><a href="/profile/">View Profile</a></li>
                                 <li><a href="/logout/">Logout</a></li>
+                                <li><a href="/contratos/">mis contratos</a></li>
                             </ul>
                         {% else %}
                         <li><a href="/signup/">Sign Up</a></li>

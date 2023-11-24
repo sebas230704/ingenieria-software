@@ -1,0 +1,27 @@
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trabajadores</title>
+    <link rel="stylesheet" href="boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+    {% for contrato in contratos %}
+        <div>
+            <h2>Contratado por: {{ contrato.hiring_user.username }}</h2>
+            <p>{{ contrato.message }}</p>
+        </div>
+    {% endfor %}
+</body>
+
+{% endblock %}
+    
+    

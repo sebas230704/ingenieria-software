@@ -6,11 +6,6 @@ from django.shortcuts import render, get_object_or_404
 from django.db import IntegrityError
 from .forms import *
 from .models import *
-from datetime import datetime
-from django.conf import settings
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
-from .forms import WorkerOfferForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -28,11 +23,16 @@ def signup(request):
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:
-                user = User.objects.create_user(username=request.POST['username'],
-                                                password=request.POST['password1'])
-                user.save()
+                # Crear el usuario
+                user = User.objects.create_user(username=request.POST['username'], password=request.POST['password1'])
+                
+                # Guardar el perfil asociado al usuario
+                worker = Worker.objects.create(idUser=user)
+                
+                # Iniciar sesión
                 login(request, user)
-                return redirect('home') #cambiar home a la pagina que tiene el base diferente
+                
+                return redirect('home')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,
@@ -64,25 +64,37 @@ def signin(request):
             login(request, user)
             return redirect('home')
 
-@login_required
-def offer_worker(request):
+def be_worker(request):
     if request.method == 'GET':
         return render(request, 'beWorker.html', {
-            'form' : WorkerOfferForm
+            'form' : WorkerForm
         })
     else:
         try:
-            form = WorkerOfferForm(request.POST)
+            form = WorkerForm(request.POST, request.FILES)  # Aquí está la corrección
             new_worker = form.save(commit=False)
-            new_worker.user = request.user
-            new_worker.email = request.user.email
+            new_worker.idUser = request.user
             new_worker.save()
-            return redirect('home')
+            return redirect('worker_list')
         except ValueError:
             return render(request, 'beWorker.html', {
-                'form' : WorkerOfferForm,
-                'error' : "Verificar los datos"
-            })
-        
-        
-        
+            'form' : WorkerForm,
+            'error' : "Please validate your information"
+        })
+
+def worker_list(request):
+    workers = Worker.objects.all()
+    return render(request, 'worker_list.html', {'workers' : workers})
+
+def hire_worker(request, worker_id):
+    worker = get_object_or_404(Worker, id=worker_id)
+    if request.method == 'POST':
+        message = request.POST.get('message', '')
+        JobNotification.objects.create(worker=worker, hiring_user=request.user, message=message)
+        return redirect('worker_list')
+    else:
+        return render(request, 'hire_worker.html', {'worker': worker})
+    
+def mis_contratos(request):
+    contratos = JobNotification.objects.filter(worker__idUser=request.user)
+    return render(request, 'misContratos.html', {'contratos': contratos})

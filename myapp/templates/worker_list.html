@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>trabajadores</title>
+    <link rel="stylesheet" href="{% static 'css/worker_list.css' %}">
+    <link rel="stylesheet" href="boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+</head>
+
+<body>
+
+    <div class="title">
+        <br>
+        <h2>Trabajadores disponibles</h2>
+    </div>
+
+    <div class="container">
+        <div class="events-container">
+            {% for worker in workers %}
+            <div class="event-card">
+                <div class="card-image">
+                    <img src="{{ worker.profilePicture.url }}">
+                </div>
+                <div class="card-body">
+                    <p class="name">{{ worker.idUser.username }}</p>
+                    <p class="city">{{ worker.description }}</p>
+                    <p class="place">{{ worker.hours }}</p>
+                    <p class="date">{{ worker.work }}</p>
+                    <p class="location">{{ worker.location }}</p>
+                </div>
+                <div class="card-footer">
+                    <form method="post" action="{% url 'hire_worker' worker.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="button">Haz clic aquí</button>
+                    </form>
+                </div>
+                
+            </div>
+            {% endfor %}
+        </div>    
+    </div>
+    
+    
+</body>
+
+</html>
+{% endblock %}
